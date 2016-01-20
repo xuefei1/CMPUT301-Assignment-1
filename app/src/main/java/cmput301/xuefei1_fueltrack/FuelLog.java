@@ -1,4 +1,4 @@
-package com.cmput301.xuefei1.xuefei1_fueltrack;
+package cmput301.xuefei1_fueltrack;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -7,22 +7,28 @@ import java.util.Date;
 /**
  * Created by xuefei1 on 1/12/16.
  */
-public class Log {
+public class FuelLog {
 
+    private long id = -1;
     private Calendar date = Calendar.getInstance();
     private String station;
     private Float odometer;
     private String grade;
     private Float amount;
-    private Float cost;
+    private Float unit_cost;
 
-    public Log(int year, int month, int day, String station, Float odometer, String grade, Float amount, Float cost){
+    public FuelLog(int id, int year, int month, int day, String station, Float odometer, String grade, Float amount, Float cost){
+        this.id = id;
         this.date.set(year,month, day);
         this.station = station;
         this.odometer = odometer;
         this.grade = grade;
         this.amount = amount;
-        this.cost = cost;
+        this.unit_cost = cost;
+    }
+
+    public long getId(){
+        return this.id;
     }
 
     public String getDate(){
@@ -36,7 +42,23 @@ public class Log {
     }
 
     public void setStation(String station){
-        this.station = station;d ..
+        this.station = station;
+    }
+
+    public void setGrade(String grade){
+        this.grade = grade;
+    }
+
+    public void setOdometer(Float odo){
+        this.odometer = odo;
+    }
+
+    public void setAmount(Float amount){
+        this.amount = amount;
+    }
+
+    public void setUnitCost(Float c){
+        this.unit_cost = c;
     }
 
     public String getStation(){
@@ -55,7 +77,13 @@ public class Log {
         return this.amount;
     }
 
-    public Float getCost(){
-        return this.cost;
+    public Float getUnitCost(){
+        return this.unit_cost;
+    }
+
+    public Float getTotalCost(){
+
+        return this.unit_cost * this.amount;
+
     }
 }
