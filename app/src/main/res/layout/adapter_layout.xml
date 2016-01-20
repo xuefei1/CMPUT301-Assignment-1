@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="140dp"
     android:padding="10dp"
     >
     <RelativeLayout
@@ -15,7 +15,7 @@
             android:background="@android:drawable/ic_menu_edit"
             android:layout_centerVertical="true"
             android:layout_margin="5dp"
-            android:id="@+id/bt_del_log"
+            android:id="@+id/bt_edit_log"
 
             />
     </RelativeLayout>
@@ -47,15 +47,27 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14dp"
                 android:id="@+id/tv_odometer"
-                android:text="Odometer:"
+                android:text="Odometer: 120001 km"
                 android:layout_alignParentRight="true"
-                android:layout_alignBaseline="@id/tv_total_cost"
+                android:layout_alignBaseline="@id/tv_odometer"
+                android:paddingBottom="2dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:id="@+id/tv_amount"
+                android:text="Amount:   50.02 L"
+                android:layout_alignParentRight="true"
+                android:layout_alignBaseline="@id/tv_amount"
+                android:paddingBottom="2dp"
                 />
         </LinearLayout>
 
@@ -63,8 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp">
+            android:paddingBottom="2dp">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -83,7 +94,7 @@
                     android:textSize="14dp"
                     android:id="@+id/tv_unit_cost"
                     android:layout_alignParentRight="true"
-                    android:text="74.09 cents/L"
+                    android:text="74.03 cents/L"
                     />
 
             </RelativeLayout>
@@ -130,7 +141,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_margin="5dp"
-
+            android:id="@+id/bt_del_log"
             />
 
     </RelativeLayout>
