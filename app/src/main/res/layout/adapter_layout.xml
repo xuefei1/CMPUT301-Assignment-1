@@ -15,7 +15,7 @@
             android:background="@android:drawable/ic_menu_edit"
             android:layout_centerVertical="true"
             android:layout_margin="5dp"
-            android:id="@+id/bt_edit_log"
+            android:id="@+id/btn_edit_log"
 
             />
     </RelativeLayout>
@@ -141,7 +141,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_margin="5dp"
-            android:id="@+id/bt_del_log"
+            android:id="@+id/btn_del_log"
             />
 
     </RelativeLayout>
