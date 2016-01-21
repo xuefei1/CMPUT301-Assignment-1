@@ -7,9 +7,8 @@ import java.util.Date;
 /**
  * Created by xuefei1 on 1/12/16.
  */
-public class FuelLog {
+public class FuelLog implements Comparable<FuelLog>{
 
-    private long id = -1;
     private Calendar date = Calendar.getInstance();
     private String station;
     private Float odometer;
@@ -17,18 +16,13 @@ public class FuelLog {
     private Float amount;
     private Float unit_cost;
 
-    public FuelLog(int id, int year, int month, int day, String station, Float odometer, String grade, Float amount, Float cost){
-        this.id = id;
+    public FuelLog(int year, int month, int day, String station, Float odometer, String grade, Float amount, Float cost){
         this.date.set(year,month, day);
         this.station = station;
         this.odometer = odometer;
         this.grade = grade;
         this.amount = amount;
         this.unit_cost = cost;
-    }
-
-    public long getId(){
-        return this.id;
     }
 
     public String getDate(){
@@ -85,5 +79,26 @@ public class FuelLog {
 
         return this.unit_cost * this.amount;
 
+    }
+
+    public Calendar getDateCalendar(){
+        return this.date;
+    }
+
+    @Override
+    public int compareTo(FuelLog another) {
+        return this.date.compareTo(another.getDateCalendar());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o == null){
+            return false;
+        }
+        if(o.getClass() != this.getClass()){
+            return false;
+        }
+
+        return this ==  o;
     }
 }

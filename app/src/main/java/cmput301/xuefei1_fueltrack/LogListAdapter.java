@@ -41,11 +41,6 @@ public class LogListAdapter<Log> extends ArrayAdapter {
     }
 
     @Override
-    public long getItemId(int position) {
-        return this.data.get(position).getId();
-    }
-
-    @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
         if(convertView == null){
@@ -98,9 +93,10 @@ public class LogListAdapter<Log> extends ArrayAdapter {
                         dialog.dismiss();
                     }
                 });
+                dialog.show();
             }
         });
 
-        return null;
+        return convertView;
     }
 }

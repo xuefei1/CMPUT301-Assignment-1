@@ -7,6 +7,13 @@ public final class FuelTrack_Utils {
 
     public static final String ACTIVITY_BUNDLE_TITLE = "INFO";
     public static final String ACTIVITY_BUNDLE_ACTIVITY_TYPE = "TYPE";
+    public static final String ACTIVITY_BUNDLE_AMOUNT= "AMOUNT";
+    public static final String ACTIVITY_BUNDLE_UNIT_PRICE= "PRICE";
+    public static final String ACTIVITY_BUNDLE_ODOMETER= "ODOMETER";
+    public static final String ACTIVITY_BUNDLE_STATION= "STATION";
+    public static final String ACTIVITY_BUNDLE_DATE_YEAR= "DATE_YEAR";
+    public static final String ACTIVITY_BUNDLE_DATE_MONTH= "DATE_MONTH";
+    public static final String ACTIVITY_BUNDLE_DATE_DAY= "DATE_DAY";
 
     public static final int ACTIVITY_TYPE_NEW_LOG = 0x0;
     public static final int ACTIVITY_TYPE_EDIT_LOG = 0x1;

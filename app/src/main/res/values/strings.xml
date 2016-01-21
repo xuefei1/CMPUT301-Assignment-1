@@ -5,6 +5,7 @@
     <string name="delete_msg_en">Are you sure you want to delete this log?</string>
     <string name="yes_en">Yes</string>
     <string name="no_en">No</string>
+    <string name="ok_en">Ok</string>
     <string name="cancel_en">Cancel</string>
     <string name="save_en">Save</string>
     <string name="add_new_log_title_en">CREATE A NEW LOG</string>
@@ -21,4 +22,8 @@
     <string name="odometer_hint_en">Enter the odometer reading</string>
     <string name="date_title_en">Date:</string>
     <string name="date_hint_en">Enter the odometer reading</string>
+    <string name="error_title_en">Error</string>
+    <string name="incomplete_msg_en">Invalid input for </string>
+    <string name="abort_title_en">Discard Log</string>
+    <string name="abort_msg_en">All unsaved changes will be lost, continue?</string>
 </resources>
