@@ -26,4 +26,5 @@
     <string name="incomplete_msg_en">Invalid input for </string>
     <string name="abort_title_en">Discard Log</string>
     <string name="abort_msg_en">All unsaved changes will be lost, continue?</string>
+    <string name="new_log_en">+ New Log</string>
 </resources>

@@ -36,4 +36,21 @@
     <color name="mat_grey_crystal">#439e9e9e</color>
     <color name="mat_grey_crystal_light">#259e9e9e</color>
     <color name="mat_grey_crystal_dark">#749e9e9e</color>
+
+    <color name="mat_blue_ultralight">#d0d9ff</color>
+    <color name="mat_blue_superlight">#afbfff</color>
+    <color name="mat_blue_lighter">#91a7ff</color>
+    <color name="mat_blue_light">#738ffe</color>
+    <color name="mat_blue_normal">#5677fc</color>
+    <color name="mat_blue_dark">#4e6cef</color>
+    <color name="mat_blue_darker">#455ede</color>
+    <color name="mat_blue_superdark">#3b50ce</color>
+    <color name="mat_blue_ultradark">#2a36b1</color>
+    <color name="mat_blue_A100">#a6baff</color>
+    <color name="mat_blue_A200">#6889ff</color>
+    <color name="mat_blue_A400">#4d73ff</color>
+    <color name="mat_blue_A700">#4d69ff</color>
+    <color name="mat_blue_crystal">#434d73ff</color>
+    <color name="mat_blue_crystal_light">#254d73ff</color>
+    <color name="mat_blue_crystal_dark">#744d73ff</color>
 </resources>

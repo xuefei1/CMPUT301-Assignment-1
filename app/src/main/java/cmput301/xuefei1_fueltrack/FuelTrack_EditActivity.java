@@ -7,6 +7,8 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +23,7 @@ import java.util.Calendar;
 /**
  * Created by Fred on 2016/1/20.
  */
-public class FuelTrack_EditActivity extends Activity{
+public class FuelTrack_EditActivity extends Activity {
 
     private int activityType = FuelTrack_Utils.ACTIVITY_TYPE_NEW_LOG;
     private TextView tv_main_title;
@@ -31,7 +33,7 @@ public class FuelTrack_EditActivity extends Activity{
     private EditText et_station;
     private EditText et_odometer;
     private Button btn_date_picker;
-    private Calendar cal = Calendar.getInstance();
+    private Calendar cal;
     private Context context = this;
 
     private DataManager dataManager;
@@ -45,18 +47,20 @@ public class FuelTrack_EditActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Bundle extras = getIntent().getBundleExtra(FuelTrack_Utils.ACTIVITY_BUNDLE_TITLE);
+        final Bundle extras = getIntent().getBundleExtra(FuelTrack_Utils.ACTIVITY_BUNDLE_TITLE);
         if (extras != null) {
             this.activityType = extras.getInt(FuelTrack_Utils.ACTIVITY_BUNDLE_ACTIVITY_TYPE);
         }
 
+        cal = Calendar.getInstance();
         dataManager = DataManager.getInstance();
-
+        //requestWindowFeature(Window.FEATURE_ACTION_BAR);
+        setContentView(R.layout.edit_log_layout);
         LayoutInflater inflater = (LayoutInflater) getActionBar()
                 .getThemedContext().getSystemService(
                         LAYOUT_INFLATER_SERVICE);
         View customActionBarView = inflater.inflate(
-                R.layout.actionbar_btn_custom, null);
+                R.layout.actionbar_edit_activity_custom, null);
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM,
                 ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME
@@ -71,7 +75,12 @@ public class FuelTrack_EditActivity extends Activity{
             @Override
             public void onClick(View v) {
                 if(checkDataReady()){
-                    dataManager.addNewLog(createLog());
+                    if(activityType == FuelTrack_Utils.ACTIVITY_TYPE_NEW_LOG) {
+                        dataManager.addNewLog(createLog());
+                    }else{
+                        dataManager.updateLog(extras.getInt(FuelTrack_Utils.ACTIVITY_BUNDLE_INDEX), createLog());
+                    }
+                    finish();
                 }
             }
         });
@@ -101,8 +110,6 @@ public class FuelTrack_EditActivity extends Activity{
                 }
             }
         });
-
-        setContentView(R.layout.edit_log_layout);
         tv_main_title = (TextView) findViewById(R.id.tv_main_title);
         et_amount = (EditText) findViewById(R.id.et_amount);
         et_unit_price = (EditText) findViewById(R.id.et_unit_price);
@@ -110,7 +117,6 @@ public class FuelTrack_EditActivity extends Activity{
         et_station = (EditText) findViewById(R.id.et_station);
         et_odometer = (EditText) findViewById(R.id.et_odometer);
         btn_date_picker = (Button) findViewById(R.id.btn_date_picker);
-        btn_date_picker.setText(DateFormat.getDateInstance().format(cal.getTime()));
         if(this.activityType == FuelTrack_Utils.ACTIVITY_TYPE_EDIT_LOG){
             this.tv_main_title.setText(getResources().getString(R.string.edit_log_title_en));
         }else{
@@ -142,7 +148,7 @@ public class FuelTrack_EditActivity extends Activity{
         if(this.activityType == FuelTrack_Utils.ACTIVITY_TYPE_EDIT_LOG){
             this.initializeValues(extras);
         }
-
+        btn_date_picker.setText(DateFormat.getDateInstance().format(cal.getTime()));
     }
 
     @Override
@@ -156,7 +162,14 @@ public class FuelTrack_EditActivity extends Activity{
     }
 
     private void initializeValues(Bundle d){
-
+        this.et_amount.setText(d.getString(FuelTrack_Utils.ACTIVITY_BUNDLE_AMOUNT, "0.0"));
+        this.et_unit_price.setText(d.getString(FuelTrack_Utils.ACTIVITY_BUNDLE_UNIT_PRICE, "0.0"));
+        this.et_station.setText(d.getString(FuelTrack_Utils.ACTIVITY_BUNDLE_STATION, "Shell"));
+        this.et_type.setText(d.getString(FuelTrack_Utils.ACTIVITY_BUNDLE_GRADE, "Regular"));
+        this.et_odometer.setText(d.getString(FuelTrack_Utils.ACTIVITY_BUNDLE_ODOMETER, "0"));
+        this.cal.set(Calendar.YEAR, d.getInt(FuelTrack_Utils.ACTIVITY_BUNDLE_DATE_YEAR, 2015));
+        this.cal.set(Calendar.MONTH, d.getInt(FuelTrack_Utils.ACTIVITY_BUNDLE_DATE_MONTH, 01));
+        this.cal.set(Calendar.DAY_OF_MONTH, d.getInt(FuelTrack_Utils.ACTIVITY_BUNDLE_DATE_DAY, 01));
     }
 
     private void showNotificationDialog(String title, String msg){
@@ -169,6 +182,7 @@ public class FuelTrack_EditActivity extends Activity{
                 dialog.dismiss();
             }
         });
+        dialog.show();
     }
 
     private boolean checkDataReady(){
@@ -176,26 +190,21 @@ public class FuelTrack_EditActivity extends Activity{
         if(this.et_amount.getText().toString().matches("")){
             target = context.getResources().getString(R.string.amount_title_en);
         }
-
-        if(this.et_unit_price.getText().toString().matches("")){
+        else if(this.et_unit_price.getText().toString().matches("")){
             target = context.getResources().getString(R.string.unit_price_title_en);
 
         }
-
-        if(this.et_type.getText().toString().matches("")){
+        else if(this.et_type.getText().toString().matches("")){
             target = context.getResources().getString(R.string.type_title_en);
         }
-
-        if(this.et_odometer.getText().toString().matches("")){
+        else if(this.et_odometer.getText().toString().matches("")){
             target = context.getResources().getString(R.string.odometer_title_en);
         }
-
-        if(this.et_station.getText().toString().matches("")){
+        else if(this.et_station.getText().toString().matches("")){
             target = context.getResources().getString(R.string.station_title_en);
         }
-
         if(!target.matches("")) {
-            this.showNotificationDialog(context.getResources().getString(R.string.error_title_en), context.getResources().getString(R.string.incomplete_msg_en) + target.substring(0, target.length()-1));
+            this.showNotificationDialog(context.getResources().getString(R.string.error_title_en), context.getResources().getString(R.string.incomplete_msg_en) + " \""+target.substring(0, target.length()-1)+"\"");
             return false;
         }
 

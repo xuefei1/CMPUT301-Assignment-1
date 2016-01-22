@@ -14,8 +14,6 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:drawablePadding="0dp"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
         android:textColor="@color/pure_white"
         android:textSize="@dimen/typo_univ"
         android:text="@string/cancel_en" />
@@ -29,8 +27,6 @@
         android:layout_gravity="start"
         android:layout_weight="1"
         android:drawablePadding="0dp"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
         android:textColor="@color/pure_white"
         android:text="@string/save_en"
         android:textSize="@dimen/typo_univ" />

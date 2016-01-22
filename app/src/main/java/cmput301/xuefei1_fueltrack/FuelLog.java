@@ -77,7 +77,7 @@ public class FuelLog implements Comparable<FuelLog>{
 
     public Float getTotalCost(){
 
-        return this.unit_cost * this.amount;
+        return (this.unit_cost/100) * this.amount;
 
     }
 
