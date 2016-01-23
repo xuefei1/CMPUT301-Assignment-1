@@ -211,7 +211,6 @@ public class FuelTrack_EditActivity extends Activity {
         return true;
     }
 
-    //int year, int month, int day, String station, Float odometer, String grade, Float amount, Float cost
     private FuelLog createLog(){
         return new FuelLog(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), et_station.getText().toString(),
                 Float.valueOf(et_odometer.getText().toString()), et_type.getText().toString(), Float.valueOf(et_amount.getText().toString()),

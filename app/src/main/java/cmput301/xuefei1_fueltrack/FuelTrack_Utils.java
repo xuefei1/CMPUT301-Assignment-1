@@ -22,9 +22,7 @@ public final class FuelTrack_Utils {
 
     public static String roundDecimal(int place, float num){
         String format_str = "%."+String.valueOf(place)+"f";
-        String.format(format_str, num);
-        String rv = String.valueOf(num);
-        return rv;
+        return String.format(format_str, num);
     }
 
     public static boolean isNumeric(String str)

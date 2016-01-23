@@ -67,8 +67,8 @@ public class LogListAdapter extends ArrayAdapter {
         final String price = FuelTrack_Utils.roundDecimal(1, this.data.get(position).getUnitCost());
 
         tv_total_cost.setText("$" + cost);
-        tv_odometer.setText("Odometer:  " + odometer +" km");
-        tv_amount.setText("Amount:  " + amount + " L");
+        tv_odometer.setText(odometer +" km");
+        tv_amount.setText(amount + " L");
         tv_unit_cost.setText(price + " cents/L");
         tv_date.setText(this.data.get(position).getDate());
         tv_type.setText(this.data.get(position).getGrade());

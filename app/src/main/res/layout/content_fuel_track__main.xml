@@ -9,7 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
-        android:id="@+id/lv_main"></ListView>
+        android:id="@+id/lv_main"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/btn_add_new"></ListView>
 
 
         <Button
