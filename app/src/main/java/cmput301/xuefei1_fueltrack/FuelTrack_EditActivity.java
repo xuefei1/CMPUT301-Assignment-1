@@ -71,7 +71,11 @@ public class FuelTrack_EditActivity extends Activity {
             public void onClick(View v) {
                 if(checkDataReady()){
                     if(activityType == FuelTrack_Utils.ACTIVITY_TYPE_NEW_LOG) {
-                        dataManager.addNewLog(createLog());
+                        dataManager.addNewLog(
+                                cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), et_station.getText().toString(),
+                                Float.valueOf(et_odometer.getText().toString()), et_type.getText().toString(), Float.valueOf(et_amount.getText().toString()),
+                                Float.valueOf(et_unit_price.getText().toString())
+                        );
                     }else{
                         // float new_amount, float new_price, float new_odometer, String new_station, String new_type, int new_year, int new_month, int new_day
                         dataManager.updateLog(extras.getInt(FuelTrack_Utils.ACTIVITY_BUNDLE_INDEX),
@@ -207,9 +211,4 @@ public class FuelTrack_EditActivity extends Activity {
         return true;
     }
 
-    private FuelLog createLog(){
-        return new FuelLog(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), et_station.getText().toString(),
-                Float.valueOf(et_odometer.getText().toString()), et_type.getText().toString(), Float.valueOf(et_amount.getText().toString()),
-                Float.valueOf(et_unit_price.getText().toString()));
-    }
 }

@@ -89,16 +89,4 @@ public class FuelLog implements Comparable<FuelLog>{
     public int compareTo(FuelLog another) {
         return this.date.compareTo(another.getDateCalendar());
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if(o == null){
-            return false;
-        }
-        if(o.getClass() != this.getClass()){
-            return false;
-        }
-
-        return this ==  o;
-    }
 }

@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 
 /**
@@ -65,8 +66,8 @@ public class DataManager {
         return this.logs;
     }
 
-    public void addNewLog(FuelLog log){
-        this.logs.add(log);
+    public void addNewLog(int year, int month, int day, String station, float odo, String type, float amount, float price){
+        this.logs.add( new FuelLog(year, month, day, station, odo, type, amount, price));
         this.sortLogsByDate();
     }
 
