@@ -27,5 +27,5 @@
     <string name="abort_title_en">Discard Log</string>
     <string name="abort_msg_en">All unsaved changes will be lost, continue?</string>
     <string name="new_log_en">+ New Log</string>
-
+    <string name="no_logs_en">You don\'t have any log(s)</string>
 </resources>

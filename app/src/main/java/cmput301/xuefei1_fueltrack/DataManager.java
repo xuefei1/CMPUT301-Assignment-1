@@ -31,7 +31,6 @@ public class DataManager {
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
             Gson gson = new Gson();
 
-            // Took from https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/Gson.html 01-19 2016
             Type listType = new TypeToken<ArrayList<FuelLog>>() {}.getType();
             this.logs = gson.fromJson(in, listType);
 
@@ -71,7 +70,17 @@ public class DataManager {
         this.sortLogsByDate();
     }
 
-    public void updateLog(int position, FuelLog log){
+    public void updateLog(int pos, float new_amount, float new_price, float new_odometer, String new_station, String new_type, int new_year, int new_month, int new_day){
+        this.logs.get(pos).setAmount(new_amount);
+        this.logs.get(pos).setGrade(new_type);
+        this.logs.get(pos).setOdometer(new_odometer);
+        this.logs.get(pos).setDate(new_year, new_month, new_day);
+        this.logs.get(pos).setStation(new_station);
+        this.logs.get(pos).setUnitCost(new_price);
+        this.sortLogsByDate();
+    }
+
+    public void replaceLog(int position, FuelLog log){
         this.logs.remove(position);
         this.logs.add(log);
         this.sortLogsByDate();

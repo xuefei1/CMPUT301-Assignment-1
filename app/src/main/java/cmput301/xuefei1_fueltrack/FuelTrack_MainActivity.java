@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class FuelTrack_MainActivity extends AppCompatActivity {
 
@@ -19,11 +20,7 @@ public class FuelTrack_MainActivity extends AppCompatActivity {
     private LogListAdapter adapter;
     private DataManager dataManager;
     private Context context;
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
+    private TextView tv_no_logs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +30,16 @@ public class FuelTrack_MainActivity extends AppCompatActivity {
         this.dataManager = DataManager.getInstance();
         this.dataManager.loadFromFile(this);
         this.lv_main = (ListView) findViewById(R.id.lv_main);
-        this.adapter = new LogListAdapter(this, R.layout.adapter_layout, dataManager.getData());
+        this.adapter = new LogListAdapter(this, R.layout.adapter_layout, dataManager.getData()){
+            @Override
+            public void notifyDataSetChanged() {
+                super.notifyDataSetChanged();
+                updateView();
+            }
+        };
         this.lv_main.setAdapter(this.adapter);
+        this.tv_no_logs = (TextView) findViewById(R.id.tv_no_logs);
+        this.updateView();
         Button btn_add_new = (Button) findViewById(R.id.btn_add_new);
         btn_add_new.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,32 +59,18 @@ public class FuelTrack_MainActivity extends AppCompatActivity {
         this.dataManager.saveToFile(this);
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_fuel_track__main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
         this.adapter.notifyDataSetChanged();
+        this.updateView();
+    }
+
+    private void updateView(){
+        if(this.dataManager.getData().size() == 0){
+            this.tv_no_logs.setVisibility(View.VISIBLE);
+        }else{
+            this.tv_no_logs.setVisibility(View.GONE);
+        }
     }
 }

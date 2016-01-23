@@ -4,6 +4,17 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
 >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_logs_en"
+        android:textColor="@color/mat_grey_dark"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:paddingBottom="80dp"
+        android:textSize="@dimen/typo_xlarge"
+        android:id="@+id/tv_no_logs"
+        android:visibility="visible"/>
 
     <ListView
         android:layout_width="match_parent"

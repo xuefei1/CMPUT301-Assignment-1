@@ -39,11 +39,6 @@ public class FuelTrack_EditActivity extends Activity {
     private DataManager dataManager;
 
     @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -78,7 +73,16 @@ public class FuelTrack_EditActivity extends Activity {
                     if(activityType == FuelTrack_Utils.ACTIVITY_TYPE_NEW_LOG) {
                         dataManager.addNewLog(createLog());
                     }else{
-                        dataManager.updateLog(extras.getInt(FuelTrack_Utils.ACTIVITY_BUNDLE_INDEX), createLog());
+                        // float new_amount, float new_price, float new_odometer, String new_station, String new_type, int new_year, int new_month, int new_day
+                        dataManager.updateLog(extras.getInt(FuelTrack_Utils.ACTIVITY_BUNDLE_INDEX),
+                               Float.valueOf(et_amount.getText().toString()),
+                                Float.valueOf(et_unit_price.getText().toString()),
+                                Float.valueOf(et_odometer.getText().toString()),
+                                et_station.getText().toString(),
+                                et_type.getText().toString(),
+                                cal.get(Calendar.YEAR),
+                                cal.get(Calendar.MONTH),
+                                cal.get(Calendar.DAY_OF_MONTH));
                     }
                     finish();
                 }
@@ -117,6 +121,7 @@ public class FuelTrack_EditActivity extends Activity {
         et_station = (EditText) findViewById(R.id.et_station);
         et_odometer = (EditText) findViewById(R.id.et_odometer);
         btn_date_picker = (Button) findViewById(R.id.btn_date_picker);
+
         if(this.activityType == FuelTrack_Utils.ACTIVITY_TYPE_EDIT_LOG){
             this.tv_main_title.setText(getResources().getString(R.string.edit_log_title_en));
         }else{
@@ -148,17 +153,8 @@ public class FuelTrack_EditActivity extends Activity {
         if(this.activityType == FuelTrack_Utils.ACTIVITY_TYPE_EDIT_LOG){
             this.initializeValues(extras);
         }
+
         btn_date_picker.setText(DateFormat.getDateInstance().format(cal.getTime()));
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
     }
 
     private void initializeValues(Bundle d){

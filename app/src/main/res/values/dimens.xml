@@ -7,6 +7,7 @@
     <dimen name="spacing_padding">18dp</dimen>
     <dimen name="title_padding">20dp</dimen>
     <dimen name="typo_title">16sp</dimen>
+    <dimen name="typo_xlarge">24sp</dimen>
     <dimen name="padding_small">5dp</dimen>
     <dimen name="padding_medium">15dp</dimen>
     <dimen name="padding_large">20dp</dimen>
