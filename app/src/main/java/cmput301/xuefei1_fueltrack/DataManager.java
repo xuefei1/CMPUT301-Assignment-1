@@ -81,12 +81,6 @@ public class DataManager {
         this.sortLogsByDate();
     }
 
-    public void replaceLog(int position, FuelLog log){
-        this.logs.remove(position);
-        this.logs.add(log);
-        this.sortLogsByDate();
-    }
-
     public void sortLogsByDate(){
         Collections.sort(logs);
     }
