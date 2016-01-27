@@ -22,12 +22,12 @@ import java.util.List;
 public class LogListAdapter extends ArrayAdapter {
 
     private Context ctx;
-    private List<FuelLog> data;
     private int layoutResID;
+    private DataManager dataManager;
 
-    public LogListAdapter(Context context, int layoutResourceId, List<FuelLog> data){
-        super(context, layoutResourceId, data);
-        this.data = data;
+    public LogListAdapter(Context context, int layoutResourceId, DataManager manager){
+        super(context, layoutResourceId, manager.getData());
+        this.dataManager = manager;
         this.ctx = context;
         this.layoutResID = layoutResourceId;
 
@@ -35,12 +35,12 @@ public class LogListAdapter extends ArrayAdapter {
 
     @Override
     public int getCount() {
-        return this.data.size();
+        return this.dataManager.getData().size();
     }
 
     @Override
     public FuelLog getItem(int position) {
-        return this.data.get(position);
+        return this.dataManager.getData().get(position);
     }
 
     @Override
@@ -61,31 +61,31 @@ public class LogListAdapter extends ArrayAdapter {
         TextView tv_date = (TextView) convertView.findViewById(R.id.tv_date);
         TextView tv_location = (TextView) convertView.findViewById(R.id.tv_location);
 
-        final String cost =  FuelTrack_Utils.roundDecimal(2, this.data.get(position).getTotalCost());
-        final String odometer = FuelTrack_Utils.roundDecimal(1, this.data.get(position).getOdometer());
-        final String amount = FuelTrack_Utils.roundDecimal(3, this.data.get(position).getAmount());
-        final String price = FuelTrack_Utils.roundDecimal(1, this.data.get(position).getUnitCost());
+        final String cost =  FuelTrack_Utils.roundDecimal(2, this.dataManager.getData().get(position).getTotalCost());
+        final String odometer = FuelTrack_Utils.roundDecimal(1, this.dataManager.getData().get(position).getOdometer());
+        final String amount = FuelTrack_Utils.roundDecimal(3, this.dataManager.getData().get(position).getAmount());
+        final String price = FuelTrack_Utils.roundDecimal(1, this.dataManager.getData().get(position).getUnitCost());
 
         tv_total_cost.setText("$" + cost);
         tv_odometer.setText(odometer +" km");
         tv_amount.setText(amount + " L");
         tv_unit_cost.setText(price + " cents/L");
-        tv_date.setText(this.data.get(position).getDate());
-        tv_type.setText(this.data.get(position).getGrade());
-        tv_location.setText("At " + this.data.get(position).getStation());
+        tv_date.setText(this.dataManager.getData().get(position).getDate());
+        tv_type.setText(this.dataManager.getData().get(position).getGrade());
+        tv_location.setText("At " + this.dataManager.getData().get(position).getStation());
 
         bt_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ctx, FuelTrack_EditActivity.class);
                 Bundle b = new Bundle();
-                int year = data.get(position).getDateCalendar().get(Calendar.YEAR);
-                int month = data.get(position).getDateCalendar().get(Calendar.MONTH);
-                int day = data.get(position).getDateCalendar().get(Calendar.DAY_OF_MONTH);
+                int year = dataManager.getData().get(position).getDateCalendar().get(Calendar.YEAR);
+                int month = dataManager.getData().get(position).getDateCalendar().get(Calendar.MONTH);
+                int day = dataManager.getData().get(position).getDateCalendar().get(Calendar.DAY_OF_MONTH);
                 b.putInt(FuelTrack_Utils.ACTIVITY_BUNDLE_ACTIVITY_TYPE, FuelTrack_Utils.ACTIVITY_TYPE_EDIT_LOG);
-                b.putString(FuelTrack_Utils.ACTIVITY_BUNDLE_GRADE, data.get(position).getGrade());
+                b.putString(FuelTrack_Utils.ACTIVITY_BUNDLE_GRADE, dataManager.getData().get(position).getGrade());
                 b.putString(FuelTrack_Utils.ACTIVITY_BUNDLE_AMOUNT, amount);
-                b.putString(FuelTrack_Utils.ACTIVITY_BUNDLE_STATION, data.get(position).getStation());
+                b.putString(FuelTrack_Utils.ACTIVITY_BUNDLE_STATION, dataManager.getData().get(position).getStation());
                 b.putString(FuelTrack_Utils.ACTIVITY_BUNDLE_ODOMETER, odometer);
                 b.putString(FuelTrack_Utils.ACTIVITY_BUNDLE_UNIT_PRICE, price);
                 b.putInt(FuelTrack_Utils.ACTIVITY_BUNDLE_DATE_YEAR, year);
@@ -106,7 +106,7 @@ public class LogListAdapter extends ArrayAdapter {
                 dialog.setPositiveButton(ctx.getResources().getString(R.string.yes_en), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        data.remove(position);
+                        dataManager.removeLog(position);
                         notifyDataSetChanged();
                         dialog.dismiss();
                     }

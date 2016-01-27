@@ -81,6 +81,14 @@ public class DataManager {
         this.sortLogsByDate();
     }
 
+    public void removeLog(int pos){
+        this.logs.remove(pos);
+    }
+
+    public void clearData(){
+        this.logs.clear();
+    }
+
     public void sortLogsByDate(){
         Collections.sort(logs);
     }

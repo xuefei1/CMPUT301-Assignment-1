@@ -30,7 +30,7 @@ public class FuelTrack_MainActivity extends AppCompatActivity {
         this.dataManager = DataManager.getInstance();
         this.dataManager.loadFromFile(this);
         this.lv_main = (ListView) findViewById(R.id.lv_main);
-        this.adapter = new LogListAdapter(this, R.layout.adapter_layout, dataManager.getData()){
+        this.adapter = new LogListAdapter(this, R.layout.adapter_layout, this.dataManager){
             @Override
             public void notifyDataSetChanged() {
                 super.notifyDataSetChanged();
