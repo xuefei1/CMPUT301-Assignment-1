@@ -87,13 +87,13 @@ public class FuelLog implements Comparable<FuelLog>{
         return this.date;
     }
 
-    public Calendar getTimestamp(){
+    public Calendar getTimeStamp(){
         return this.timestamp;
     }
 
     @Override
     public int compareTo(FuelLog another) {
-        return - this.timestamp.compareTo(another.getTimestamp());
+        return - this.timestamp.compareTo(another.getTimeStamp());
     }
 
 }
