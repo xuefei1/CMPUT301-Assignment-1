@@ -13,13 +13,13 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by Fred on 2016/1/21.
  */
-public class DataManager {
+public class DataManager extends FTModel<FuelLog> {
 
     private static final String FILENAME = "FuelTrackData.sav";
 
@@ -62,26 +62,22 @@ public class DataManager {
         }
     }
 
-    public ArrayList<FuelLog> getData(){
+    public List<FuelLog> getData(){
         return this.logs;
     }
 
-    public void addNewLog(int year, int month, int day, String station, float odo, String type, float amount, float price){
-        this.logs.add( new FuelLog(year, month, day, station, odo, type, amount, price));
-        this.sortLogsByDate();
+    public void addEntry(FuelLog log){
+        this.logs.add(log);
+        this.sortLogs();
     }
 
-    public void updateLog(int pos, float new_amount, float new_price, float new_odometer, String new_station, String new_type, int new_year, int new_month, int new_day){
-        this.logs.get(pos).setAmount(new_amount);
-        this.logs.get(pos).setGrade(new_type);
-        this.logs.get(pos).setOdometer(new_odometer);
-        this.logs.get(pos).setDate(new_year, new_month, new_day);
-        this.logs.get(pos).setStation(new_station);
-        this.logs.get(pos).setUnitCost(new_price);
-        this.sortLogsByDate();
+    public void updateEntry(int pos, FuelLog new_log){
+        this.logs.remove(pos);
+        this.logs.add(new_log);
+        this.sortLogs();
     }
 
-    public void removeLog(int pos){
+    public void removeEntry(int pos){
         this.logs.remove(pos);
     }
 
@@ -89,7 +85,7 @@ public class DataManager {
         this.logs.clear();
     }
 
-    public void sortLogsByDate(){
+    public void sortLogs(){
         Collections.sort(logs);
     }
 

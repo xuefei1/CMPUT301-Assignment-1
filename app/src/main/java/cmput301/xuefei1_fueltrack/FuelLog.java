@@ -15,14 +15,16 @@ public class FuelLog implements Comparable<FuelLog>{
     private String grade;
     private Float amount;
     private Float unit_cost;
+    private Calendar timestamp;
 
-    public FuelLog(int year, int month, int day, String station, Float odometer, String grade, Float amount, Float cost){
+    public FuelLog(int year, int month, int day, Float amount, Float cost, Float odometer, String grade, String station){
         this.date.set(year,month, day);
         this.station = station;
         this.odometer = odometer;
         this.grade = grade;
         this.amount = amount;
         this.unit_cost = cost;
+        this.timestamp = Calendar.getInstance();
     }
 
     public String getDate(){
@@ -85,8 +87,13 @@ public class FuelLog implements Comparable<FuelLog>{
         return this.date;
     }
 
+    public Calendar getTimestamp(){
+        return this.timestamp;
+    }
+
     @Override
     public int compareTo(FuelLog another) {
-        return - this.date.compareTo(another.getDateCalendar());
+        return - this.timestamp.compareTo(another.getTimestamp());
     }
+
 }

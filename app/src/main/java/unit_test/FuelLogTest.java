@@ -25,7 +25,7 @@ public class FuelLogTest extends TestCase{
     @Test
     public void testSetters(){
         this.log = new FuelLog(2000, 01, 01,
-                "str", new Float(100), "str", new Float(10), new Float(90));
+               new Float(80), new Float(69), new Float(53242), "grade", "esso");
         this.log.setAmount(TEST_FLOAT_AMOUNT);
         this.log.setUnitCost(TEST_FLOAT_PRICE);
         this.log.setStation(TEST_STR_STATION);
@@ -45,16 +45,17 @@ public class FuelLogTest extends TestCase{
     @Test
     public void testCostCalculation(){
         this.log = new FuelLog(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH),
-                TEST_STR_STATION, TEST_FLOAT_ODO, TEST_STR_GRADE, TEST_FLOAT_AMOUNT, TEST_FLOAT_PRICE);
+                TEST_FLOAT_AMOUNT, TEST_FLOAT_PRICE, TEST_FLOAT_ODO, TEST_STR_GRADE, TEST_STR_STATION);
         assertEquals(this.log.getTotalCost(), TEST_FLOAT_PRICE/100 *TEST_FLOAT_AMOUNT);
     }
 
     @Test
     public void testComparison(){
-        this.log = new FuelLog(calendar.get(Calendar.YEAR)-1, calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH),
-                TEST_STR_STATION, TEST_FLOAT_ODO, TEST_STR_GRADE, TEST_FLOAT_AMOUNT, TEST_FLOAT_PRICE);
+        this.log = new FuelLog(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH),
+                TEST_FLOAT_AMOUNT, TEST_FLOAT_PRICE, TEST_FLOAT_ODO, TEST_STR_GRADE, TEST_STR_STATION);
+        try{Thread.sleep(1000);}catch(Exception e){throw new RuntimeException();}
         FuelLog new_log = new FuelLog(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH),
-                TEST_STR_STATION, TEST_FLOAT_ODO, TEST_STR_GRADE, TEST_FLOAT_AMOUNT, TEST_FLOAT_PRICE);
+                TEST_FLOAT_AMOUNT, TEST_FLOAT_PRICE, TEST_FLOAT_ODO, TEST_STR_GRADE, TEST_STR_STATION);
         assertEquals(this.log.compareTo(new_log), 1);
     }
 

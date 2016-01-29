@@ -3,7 +3,7 @@ package cmput301.xuefei1_fueltrack;
 /**
  * Created by Fred on 2016/1/19.
  */
-public final class FuelTrack_Utils {
+public final class Helper {
 
     public static final String ACTIVITY_BUNDLE_TITLE = "INFO";
     public static final String ACTIVITY_BUNDLE_ACTIVITY_TYPE = "TYPE";
