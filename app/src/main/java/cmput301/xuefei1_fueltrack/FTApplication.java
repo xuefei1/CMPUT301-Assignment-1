@@ -7,6 +7,16 @@ import android.app.Application;
  */
 public class FTApplication extends Application{
 
+    /*
+
+    Purpose: Custom Application class for the app, in here we will instantiate the controller and model object and relate them
+
+    Design rationale: This class is an abstract representation of the entire App, the model and controller objects are best instantiated here than in an activity class
+
+    Issues: None
+
+    */
+
     private FTModel<FuelLog> model;
     private FTController controller;
 

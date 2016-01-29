@@ -16,6 +16,16 @@ import cmput301.xuefei1_fueltrack.FuelLog;
  */
 public class DataManagerTest extends ActivityInstrumentationTestCase2{
 
+    /*
+
+    Purpose: Unit test for our model class
+
+    Design rationale: JUNIT, separation of concern. Test each component individually
+
+    Issues: None
+
+    */
+
     private static final String TEST_STR_STATION = "station";
     private static final String TEST_STR_GRADE = "grade";
     private static final Float TEST_FLOAT_PRICE = new Float(67.755);

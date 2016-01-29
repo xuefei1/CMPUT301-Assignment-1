@@ -14,6 +14,17 @@ import cmput301.xuefei1_fueltrack.FuelLog;
 
 public class FuelLogTest extends TestCase{
 
+    /*
+
+    Purpose: Unit test for our log entry class
+
+    Design rationale: JUNIT, separation of concern. Test each component individually
+    It's also a good idea to test the foundation data structure since it can be considered part of the model
+
+    Issues: None
+
+    */
+
     private FuelLog log;
     private static final String TEST_STR_STATION = "station";
     private static final String TEST_STR_GRADE = "grade";

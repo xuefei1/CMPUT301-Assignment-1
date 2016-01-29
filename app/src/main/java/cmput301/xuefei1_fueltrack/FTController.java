@@ -9,6 +9,22 @@ import java.util.List;
  */
 public class FTController {
 
+    /*
+
+    Purpose: Controller class for the entire app. It's responsibilities include:
+    1. Interact with model to request operations to be done on the data
+    2. Relay requests for data from the View classes to the model. Thus, view NEVER talks to model directly
+    3. Handle view refresh requests, this method is relatively simple to implement for a simple App like this,
+        but for a more complicated system, we might want to deny some view update requests to improve performance, so it's
+        better design to have the controller decide when to update the view and let the view objects provide an implementation about
+        what to update.
+
+    Design rationale: Controller component in MVC
+
+    Issues: None
+
+    */
+
     private FTModel<FuelLog> model = null;
     private Context context;
 

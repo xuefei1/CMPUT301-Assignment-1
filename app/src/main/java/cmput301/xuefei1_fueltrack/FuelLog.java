@@ -9,6 +9,16 @@ import java.util.Date;
  */
 public class FuelLog implements Comparable<FuelLog>{
 
+    /*
+
+    Purpose: Class representing each log entry, a list of FuelLogs will be managed by the model class
+
+    Design rationale: each entity should be a class, a log entry is considered an entity
+
+    Issues: None
+
+    */
+
     private Calendar date = Calendar.getInstance();
     private String station;
     private Float odometer;

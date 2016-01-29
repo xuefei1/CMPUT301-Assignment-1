@@ -10,18 +10,37 @@ import java.util.List;
  */
 public abstract class FTModel<T> {
 
+    /*
+
+    Purpose: Generic abstract model class, defines the must-have features of a model class
+
+    Design rationale: Model component in MVC, To implement the specific model simply inherit from this class and override all the abstract methods
+
+    Issues: None
+
+    */
+
     public abstract void loadFromFile(Context ctx);
 
     public abstract void saveToFile(Context ctx);
 
     public abstract List<T> getData();
 
-    public abstract void updateEntry(int pos, T new_entry);
+    public void updateEntry(int pos, T new_entry){
+        this.getData().remove(pos);
+        this.getData().add(new_entry);
+    };
 
-    public abstract void removeEntry(int pos);
+    public void removeEntry(int pos){
+        this.getData().remove(pos);
+    }
 
-    public abstract void addEntry(T entry);
+    public void addEntry(T entry){
+        this.getData().add(entry);
+    }
 
-    public abstract void clearData();
+    public void clearData(){
+        this.getData().clear();
+    }
 
 }

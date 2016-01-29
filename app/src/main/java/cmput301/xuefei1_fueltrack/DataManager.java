@@ -21,11 +21,22 @@ import java.util.List;
  */
 public class DataManager extends FTModel<FuelLog> {
 
+    /*
+
+    Purpose: Actual model class, handles data load/store, addition/deletion/update, also sorts entry by date edited
+
+    Design rationale: Model component in MVC, only care about data related operations
+
+    Issues: None
+
+    */
+
     private static final String FILENAME = "FuelTrackData.sav";
 
     private ArrayList<FuelLog> logs;
     private static DataManager instance = null;
 
+    @Override
     public void loadFromFile(Context ctx){
         try {
             FileInputStream fis = ctx.openFileInput(FILENAME);
@@ -44,6 +55,7 @@ public class DataManager extends FTModel<FuelLog> {
         }
     }
 
+    @Override
     public void saveToFile(Context ctx){
         try {
             FileOutputStream fos = ctx.openFileOutput(FILENAME,
@@ -62,27 +74,21 @@ public class DataManager extends FTModel<FuelLog> {
         }
     }
 
+    @Override
     public List<FuelLog> getData(){
         return this.logs;
     }
 
+    @Override
     public void addEntry(FuelLog log){
-        this.logs.add(log);
+        super.addEntry(log);
         this.sortLogs();
     }
 
+    @Override
     public void updateEntry(int pos, FuelLog new_log){
-        this.logs.remove(pos);
-        this.logs.add(new_log);
+        super.updateEntry(pos, new_log);
         this.sortLogs();
-    }
-
-    public void removeEntry(int pos){
-        this.logs.remove(pos);
-    }
-
-    public void clearData(){
-        this.logs.clear();
     }
 
     public void sortLogs(){

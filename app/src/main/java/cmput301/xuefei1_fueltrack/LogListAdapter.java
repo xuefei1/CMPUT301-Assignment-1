@@ -20,6 +20,18 @@ import java.util.Calendar;
  */
 public class LogListAdapter extends ArrayAdapter{
 
+    /*
+
+    Purpose: Custom adapter class for the listview in main activity, showcase all the log entries
+
+    Design rationale: Adapter looks like a view component but since all the view related operations are handled inside getView() method
+    I believe this class acts more like a support class for other View classes (i.e. Activity_Main), although it also needs to talk to the controller
+    It shouldn't be classified as a standalone View class. Instead, it interacts with the controller through the main activity
+
+    Issues: None
+
+    */
+
     private Context ctx;
     private int layoutResID;
     private FTController controller;

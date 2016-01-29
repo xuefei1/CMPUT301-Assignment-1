@@ -11,6 +11,16 @@ import android.widget.TextView;
 
 public class Activity_Main extends AppCompatActivity implements FTView{
 
+    /*
+
+    Purpose: Main activity class of the app, displays a list view of all logs and a button to add a new log
+
+    Design rationale: View component in MVC, implements FTView interface and interacts with controller class ONLY, initialize controller in onCreate()
+
+    Issues: None
+
+    */
+
     private ListView lv_main;
     private LogListAdapter adapter;
     private Context context;

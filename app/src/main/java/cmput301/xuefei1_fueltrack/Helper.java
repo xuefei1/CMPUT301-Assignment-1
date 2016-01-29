@@ -5,6 +5,17 @@ package cmput301.xuefei1_fueltrack;
  */
 public final class Helper {
 
+    /*
+
+    Purpose: Helper class designed to provide useful static methods/constants will be used by all classes in the App
+
+    Design rationale: Having a static helper class is always beneficial. We can put constants here as well as any static helper methods.
+    Making them visible to every class.
+
+    Issues: None
+
+    */
+
     public static final String ACTIVITY_BUNDLE_TITLE = "INFO";
     public static final String ACTIVITY_BUNDLE_ACTIVITY_TYPE = "TYPE";
     public static final String ACTIVITY_BUNDLE_AMOUNT= "AMOUNT";

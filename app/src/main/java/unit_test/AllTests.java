@@ -9,6 +9,16 @@ import junit.framework.TestSuite;
 
 public class AllTests {
 
+    /*
+
+    Purpose: Class that prepares all the test classes, getting them ready.
+
+    Design rationale: JUNIT
+
+    Issues: None
+
+    */
+
     public static Test suite() {
         TestSuite suite = new TestSuite("Test for default package");
         //$JUnit-BEGIN$

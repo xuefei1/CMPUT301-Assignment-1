@@ -25,6 +25,16 @@ import java.util.Calendar;
  */
 public class Activity_Edit extends Activity implements FTView {
 
+    /*
+
+    Purpose: Activity class designed for user to add a new log as well as updating an existing log
+
+    Design rationale: View component in MVC, implements FTView interface and interacts with controller class ONLY
+
+    Issues: None
+
+    */
+
     private int activityType = Helper.ACTIVITY_TYPE_NEW_LOG;
     private TextView tv_main_title;
     private EditText et_amount;
